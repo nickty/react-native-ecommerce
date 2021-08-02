@@ -7,10 +7,13 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 
 import productsReducer from "./store/reducers/products";
+import cardReducer from "./store/reducers/cart";
 import ShopNavigator from "./navigation/ShopNavigator";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   products: productsReducer,
+  cart: cardReducer,
 });
 
 // const fetchFonts = () => {
@@ -20,7 +23,7 @@ const rootReducer = combineReducers({
 //   });
 // };
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default function App() {
   // const [fontLoaded, setfontLoaded] = useState(false);
