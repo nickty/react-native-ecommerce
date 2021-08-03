@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
+import CartItem from "../../components/shop/CartItem";
 import Colors from "../../constants/Colors";
 
 const CartScreen = () => {
@@ -23,7 +25,8 @@ const CartScreen = () => {
     <View style={styles.screen}>
       <View style={styles.summery}>
         <Text style={styles.summaryText}>
-          Total: <Text style={styles.amount}>${cartTotalAmount}</Text>
+          Total:{" "}
+          <Text style={styles.amount}>${cartTotalAmount.toFixed(2)}</Text>
         </Text>
         <Button
           color={Colors.accent}
@@ -31,9 +34,18 @@ const CartScreen = () => {
           disabled={cartItems.length === 0}
         />
       </View>
-      <View>
-        <Text>CART ITEMS</Text>
-      </View>
+      <FlatList
+        data={cartItems}
+        keyExtractor={(item) => item.productId}
+        renderItem={(itemData) => (
+          <CartItem
+            quantity={itemData.item.quantity}
+            title={itemData.item.productTitle}
+            amount={itemData.item.sum}
+            onRemove={() => {}}
+          />
+        )}
+      />
     </View>
   );
 };
