@@ -10,10 +10,12 @@ import productsReducer from "./store/reducers/products";
 import cardReducer from "./store/reducers/cart";
 import ShopNavigator from "./navigation/ShopNavigator";
 import { composeWithDevTools } from "redux-devtools-extension";
+import orders from "./store/reducers/orders";
 
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cardReducer,
+  orders: orders,
 });
 
 // const fetchFonts = () => {
